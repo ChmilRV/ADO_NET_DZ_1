@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace ADO_NET_DZ_1
 {
-
-
-
     class Program
     {
         SqlConnection connection = null;
@@ -20,8 +13,6 @@ namespace ADO_NET_DZ_1
             connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString_DZ1"].ConnectionString;
         }
-
-
         public void ReadData()
         {
             int countBooks = 0;
@@ -30,7 +21,7 @@ namespace ADO_NET_DZ_1
             {
                 connection.Open();
                 string sqlQuery_1 = "Select count(id) from Books;";
-                SqlCommand sqlCommand_1 = new SqlCommand(sqlQuery_1,connection);
+                SqlCommand sqlCommand_1 = new SqlCommand(sqlQuery_1, connection);
                 countBooks = (Int32)sqlCommand_1.ExecuteScalar();
                 //WriteLine($"Количество книг {countBooks}");
                 string sqlQuery_2 = "Select B.Title as Title," +
@@ -49,7 +40,8 @@ namespace ADO_NET_DZ_1
                 {
                     if (headLine)
                     {
-                        for (int j = 0; j < dataReader.FieldCount; j++) Write(dataReader.GetName(j).ToString() + "\t\t\t");
+                        for (int j = 0; j < dataReader.FieldCount; j++)
+                            Write(dataReader.GetName(j).ToString() + "\t\t\t");
                         WriteLine();
                     }
                     headLine = false;
