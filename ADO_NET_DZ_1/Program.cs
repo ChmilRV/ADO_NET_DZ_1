@@ -34,7 +34,7 @@ namespace ADO_NET_DZ_1
                 dataReader = sqlCommand_2.ExecuteReader();
                 bool headLine = true;
                 int pagesSumm = 0;
-                int priceSumm = 0;
+                decimal priceSumm = 0;
                 Write("#\t");
                 for (int i = 0; i < countBooks; i++)
                 {
@@ -48,11 +48,11 @@ namespace ADO_NET_DZ_1
                     dataReader.Read();
                     string title = dataReader.GetString(0);
                     string author = dataReader.GetString(1);
-                    int price = dataReader.GetInt32(2);
+                    decimal price = dataReader.GetDecimal(2);
                     int pages = dataReader.GetInt32(3);
                     priceSumm += price;
                     pagesSumm += pages;
-                    WriteLine((i + 1) + "\t" + title + "\t" + author + "\t\t" + price + "\t\t\t" + pages);
+                    WriteLine((i + 1) + "\t" + title + "\t" + author + "\t\t" + price + "\t\t" + pages);
                 }
                 WriteLine($"\nСумарная цена всех книг: {priceSumm}.");
                 WriteLine($"Сумарное количество страниц всех книг: {pagesSumm}.");
